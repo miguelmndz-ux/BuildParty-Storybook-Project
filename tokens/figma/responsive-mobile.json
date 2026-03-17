@@ -1,0 +1,41 @@
+{
+  "h1/font-size":           { "$type": "dimension", "$value": { "value": 48, "unit": "px" } },
+  "h1/line-height":         { "$type": "dimension", "$value": { "value": 56, "unit": "px" } },
+  "h1/paragraph-spacing":   { "$type": "dimension", "$value": { "value": 48, "unit": "px" } },
+
+  "h2/font-size":           { "$type": "dimension", "$value": { "value": 40, "unit": "px" } },
+  "h2/line-height":         { "$type": "dimension", "$value": { "value": 48, "unit": "px" } },
+  "h2/paragraph-spacing":   { "$type": "dimension", "$value": { "value": 48, "unit": "px" } },
+
+  "h3/font-size":           { "$type": "dimension", "$value": { "value": 32, "unit": "px" } },
+  "h3/line-height":         { "$type": "dimension", "$value": { "value": 40, "unit": "px" } },
+  "h3/paragraph-spacing":   { "$type": "dimension", "$value": { "value": 32, "unit": "px" } },
+
+  "h4/font-size":           { "$type": "dimension", "$value": { "value": 28, "unit": "px" } },
+  "h4/line-height":         { "$type": "dimension", "$value": { "value": 36, "unit": "px" } },
+  "h4/paragraph-spacing":   { "$type": "dimension", "$value": { "value": 32, "unit": "px" } },
+
+  "h5/font-size":           { "$type": "dimension", "$value": { "value": 24, "unit": "px" } },
+  "h5/line-height":         { "$type": "dimension", "$value": { "value": 28, "unit": "px" } },
+  "h5/paragraph-spacing":   { "$type": "dimension", "$value": { "value": 32, "unit": "px" } },
+
+  "h6/font-size":           { "$type": "dimension", "$value": { "value": 20, "unit": "px" } },
+  "h6/line-height":         { "$type": "dimension", "$value": { "value": 24, "unit": "px" } },
+  "h6/paragraph-spacing":   { "$type": "dimension", "$value": { "value": 32, "unit": "px" } },
+
+  "paragraph-lg/font-size":         { "$type": "dimension", "$value": { "value": 20, "unit": "px" } },
+  "paragraph-lg/line-height":       { "$type": "dimension", "$value": { "value": 28, "unit": "px" } },
+  "paragraph-lg/paragraph-spacing": { "$type": "dimension", "$value": { "value": 24, "unit": "px" } },
+
+  "paragraph-md/font-size":         { "$type": "dimension", "$value": { "value": 16, "unit": "px" } },
+  "paragraph-md/line-height":       { "$type": "dimension", "$value": { "value": 24, "unit": "px" } },
+  "paragraph-md/paragraph-spacing": { "$type": "dimension", "$value": { "value": 20, "unit": "px" } },
+
+  "paragraph-sm/font-size":         { "$type": "dimension", "$value": { "value": 14, "unit": "px" } },
+  "paragraph-sm/line-height":       { "$type": "dimension", "$value": { "value": 20, "unit": "px" } },
+  "paragraph-sm/paragraph-spacing": { "$type": "dimension", "$value": { "value": 16, "unit": "px" } },
+
+  "paragraph-xsm/font-size":         { "$type": "dimension", "$value": { "value": 12, "unit": "px" } },
+  "paragraph-xsm/line-height":       { "$type": "dimension", "$value": { "value": 16, "unit": "px" } },
+  "paragraph-xsm/paragraph-spacing": { "$type": "dimension", "$value": { "value": 12, "unit": "px" } }
+}
