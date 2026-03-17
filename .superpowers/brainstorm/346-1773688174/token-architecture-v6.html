@@ -1,0 +1,133 @@
+<h2>Token Architecture — Final</h2>
+<p class="subtitle">Typography moved back to primitives. This is the approved token set.</p>
+
+<style>
+  .tier { background:#1e1e2e; border:1px solid #2e2e3e; border-radius:10px; padding:20px; }
+  .tier-label { font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#6b7280; margin-bottom:4px; }
+  .tier-desc { font-size:12px; color:#a0a0b0; margin-bottom:14px; }
+  .group-label { font-size:10px; font-weight:700; color:#6b7280; text-transform:uppercase; letter-spacing:.06em; margin:12px 0 6px; }
+  .token-row { display:flex; align-items:flex-start; gap:8px; margin-bottom:6px; }
+  .swatch { display:inline-block; width:14px; height:14px; border-radius:3px; flex-shrink:0; margin-top:1px; }
+  .token-name { font-size:12px; font-family:monospace; color:#e2e2f0; line-height:1.4; }
+  .token-ref { font-size:11px; font-family:monospace; color:#6b7280; display:block; }
+  .token-val { font-size:11px; font-family:monospace; color:#6b7280; }
+  .used { color:#fbbf24; }
+  .used .token-val, .used .token-ref { color:#a37a20; }
+  .moved { color:#6ee7b7; }
+  .moved .token-val { color:#3d8a6a; }
+  .divider { border:none; border-top:1px solid #2e2e3e; margin:12px 0; }
+</style>
+
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:8px;">
+
+  <!-- TIER 1 -->
+  <div class="tier">
+    <div class="tier-label">Tier 1 · Primitives</div>
+    <div class="tier-desc">Raw values only — colors, sizing scale, typography scale.</div>
+
+    <div class="group-label">Colors</div>
+    <div class="token-row"><span class="swatch" style="background:#fbbf24;"></span><span class="token-name">color-amber-400 <span class="token-val">#fbbf24</span></span></div>
+    <div class="token-row"><span class="swatch" style="background:#f59e0b;"></span><span class="token-name">color-amber-500 <span class="token-val">#f59e0b</span></span></div>
+    <div class="token-row"><span class="swatch" style="background:#d97706;"></span><span class="token-name">color-amber-600 <span class="token-val">#d97706</span></span></div>
+    <div class="token-row"><span class="swatch" style="background:#b45309;"></span><span class="token-name">color-amber-700 <span class="token-val">#b45309</span></span></div>
+    <div class="token-row"><span class="swatch" style="background:#ffffff;border:1px solid #3e3e4e;"></span><span class="token-name">color-neutral-0 <span class="token-val">#ffffff</span></span></div>
+    <div class="token-row"><span class="swatch" style="background:#fafaf8;border:1px solid #3e3e4e;"></span><span class="token-name">color-neutral-50 <span class="token-val">#fafaf8</span></span></div>
+    <div class="token-row"><span class="swatch" style="background:#a8a29e;"></span><span class="token-name">color-neutral-400 <span class="token-val">#a8a29e</span></span></div>
+    <div class="token-row"><span class="swatch" style="background:#1c1917;border:1px solid #3e3e4e;"></span><span class="token-name">color-neutral-900 <span class="token-val">#1c1917</span></span></div>
+    <div class="token-row"><span class="swatch" style="background:#1a1208;border:1px solid #3e3e4e;"></span><span class="token-name">color-neutral-950 <span class="token-val">#1a1208</span></span></div>
+
+    <div class="group-label">Sizing — 8px grid</div>
+    <div class="token-row"><span class="token-name">sizing-1 <span class="token-val">4px</span></span></div>
+    <div class="token-row"><span class="token-name">sizing-2 <span class="token-val">8px</span></span></div>
+    <div class="token-row"><span class="token-name">sizing-3 <span class="token-val">12px</span></span></div>
+    <div class="token-row"><span class="token-name">sizing-4 <span class="token-val">16px</span></span></div>
+    <div class="token-row"><span class="token-name">sizing-5 <span class="token-val">24px</span></span></div>
+
+    <div class="group-label">Typography</div>
+    <div class="token-row"><span class="token-name moved used">font-size-sm <span class="token-val">14px</span></span></div>
+    <div class="token-row"><span class="token-name moved">font-size-md <span class="token-val">16px</span></span></div>
+    <div class="token-row"><span class="token-name moved">font-weight-regular <span class="token-val">400</span></span></div>
+    <div class="token-row"><span class="token-name moved">font-weight-medium <span class="token-val">500</span></span></div>
+    <div class="token-row"><span class="token-name moved used">font-weight-semibold <span class="token-val">600</span></span></div>
+  </div>
+
+  <!-- TIER 2 -->
+  <div class="tier">
+    <div class="tier-label">Tier 2 · Semantic</div>
+    <div class="tier-desc">Colors (mode-aware) + named spacing and radius scales.</div>
+
+    <div class="group-label">Colors · Light mode</div>
+    <div class="token-row"><span class="swatch" style="background:#d97706;"></span><span class="token-name">color-action-bg<span class="token-ref">→ {color-amber-600}</span></span></div>
+    <div class="token-row"><span class="swatch" style="background:#ffffff;border:1px solid #3e3e4e;"></span><span class="token-name">color-on-action<span class="token-ref">→ {color-neutral-0}</span></span></div>
+    <div class="token-row"><span class="swatch" style="background:#d97706;"></span><span class="token-name">color-action-emphasis<span class="token-ref">→ {color-amber-600}</span></span></div>
+    <div class="token-row"><span class="swatch" style="background:#ffffff;border:1px solid #3e3e4e;"></span><span class="token-name">color-surface-default<span class="token-ref">→ {color-neutral-0}</span></span></div>
+    <div class="token-row"><span class="swatch" style="background:#1c1917;border:1px solid #3e3e4e;"></span><span class="token-name">color-text-on-surface<span class="token-ref">→ {color-neutral-900}</span></span></div>
+
+    <div class="group-label">Colors · Dark mode overrides</div>
+    <div class="token-row"><span class="swatch" style="background:#f59e0b;"></span><span class="token-name">color-action-bg<span class="token-ref">→ {color-amber-500}</span></span></div>
+    <div class="token-row"><span class="swatch" style="background:#f59e0b;"></span><span class="token-name">color-action-emphasis<span class="token-ref">→ {color-amber-500}</span></span></div>
+    <div class="token-row"><span class="swatch" style="background:#1a1208;border:1px solid #3e3e4e;"></span><span class="token-name">color-surface-default<span class="token-ref">→ {color-neutral-950}</span></span></div>
+    <div class="token-row"><span class="swatch" style="background:#a8a29e;"></span><span class="token-name">color-text-on-surface<span class="token-ref">→ {color-neutral-400}</span></span></div>
+
+    <hr class="divider">
+
+    <div class="group-label">Padding scale</div>
+    <div class="token-row"><span class="token-name">padding-none <span class="token-val">0</span></span></div>
+    <div class="token-row"><span class="token-name">padding-xxs<span class="token-ref">→ {sizing-1} · 4px</span></span></div>
+    <div class="token-row"><span class="token-name">padding-xs<span class="token-ref">→ {sizing-2} · 8px</span></span></div>
+    <div class="token-row"><span class="token-name used">padding-sm<span class="token-ref">→ {sizing-3} · 12px ← button-y</span></span></div>
+    <div class="token-row"><span class="token-name">padding-md<span class="token-ref">→ {sizing-4} · 16px</span></span></div>
+    <div class="token-row"><span class="token-name used">padding-lg<span class="token-ref">→ {sizing-5} · 24px ← button-x</span></span></div>
+
+    <div class="group-label">Radius scale</div>
+    <div class="token-row"><span class="token-name">radius-none <span class="token-val">0</span></span></div>
+    <div class="token-row"><span class="token-name used">radius-sm <span class="token-val">6px ← button</span></span></div>
+    <div class="token-row"><span class="token-name">radius-md <span class="token-val">12px</span></span></div>
+    <div class="token-row"><span class="token-name">radius-full <span class="token-val">9999px</span></span></div>
+  </div>
+
+  <!-- TIER 3 -->
+  <div class="tier">
+    <div class="tier-label">Tier 3 · Component</div>
+    <div class="tier-desc">Button-specific — references semantic and primitives.</div>
+
+    <div class="group-label">Primary variant</div>
+    <div class="token-row"><span class="token-name">button-primary-bg<span class="token-ref">→ {color-action-bg}</span></span></div>
+    <div class="token-row"><span class="token-name">button-primary-text<span class="token-ref">→ {color-on-action}</span></span></div>
+    <div class="token-row"><span class="token-name">button-primary-border<span class="token-ref">→ transparent</span></span></div>
+
+    <div class="group-label">Outlined variant</div>
+    <div class="token-row"><span class="token-name">button-outlined-bg<span class="token-ref">→ {color-surface-default}</span></span></div>
+    <div class="token-row"><span class="token-name">button-outlined-text<span class="token-ref">→ {color-action-emphasis}</span></span></div>
+    <div class="token-row"><span class="token-name">button-outlined-border<span class="token-ref">→ {color-action-emphasis}</span></span></div>
+
+    <div class="group-label">Shared sizing</div>
+    <div class="token-row"><span class="token-name">button-padding-y<span class="token-ref">→ {padding-sm}</span></span></div>
+    <div class="token-row"><span class="token-name">button-padding-x<span class="token-ref">→ {padding-lg}</span></span></div>
+    <div class="token-row"><span class="token-name">button-radius<span class="token-ref">→ {radius-sm}</span></span></div>
+    <div class="token-row"><span class="token-name moved">button-font-size<span class="token-ref">→ {font-size-sm}</span></span></div>
+    <div class="token-row"><span class="token-name moved">button-font-weight<span class="token-ref">→ {font-weight-semibold}</span></span></div>
+
+    <div style="margin-top:16px;background:#13131f;border-radius:6px;padding:12px;font-size:11px;color:#6b7280;line-height:1.8;">
+      <strong style="color:#a0a0b0;">Reference chain summary</strong><br>
+      color: primitive → semantic → component<br>
+      padding: primitive → semantic → component<br>
+      radius: semantic → component<br>
+      typography: primitive → component
+    </div>
+  </div>
+
+</div>
+
+<div style="margin-top:16px;">
+  <div class="options">
+    <div class="option" data-choice="approved" onclick="toggleSelect(this)">
+      <div class="letter">A</div>
+      <div class="content"><h3>Approved — write the spec</h3><p>This is the token set. Ready to generate the JSON.</p></div>
+    </div>
+    <div class="option" data-choice="adjust" onclick="toggleSelect(this)">
+      <div class="letter">B</div>
+      <div class="content"><h3>One more change</h3><p>I'll describe it in the terminal</p></div>
+    </div>
+  </div>
+</div>

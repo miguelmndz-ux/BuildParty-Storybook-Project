@@ -1,0 +1,116 @@
+<h2>Token Architecture — 3-Tier Design</h2>
+<p class="subtitle">How the three sets connect. Arrows show references. Does this structure look right?</p>
+
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:8px;">
+
+  <!-- TIER 1 -->
+  <div style="background:var(--card-bg,#f8f8f8);border:1px solid var(--border,#e2e2e2);border-radius:10px;padding:20px;">
+    <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#6b7280;margin-bottom:12px;">Tier 1 · Primitives</div>
+    <div style="font-size:12px;color:#374151;margin-bottom:8px;font-weight:600;">Raw values only — no references</div>
+
+    <div style="display:flex;flex-direction:column;gap:6px;margin-top:12px;">
+      <div style="font-size:11px;font-weight:600;color:#9ca3af;text-transform:uppercase;letter-spacing:.05em;">Colors</div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:12px;font-family:monospace;">
+        <span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#fbbf24;flex-shrink:0;"></span> color-amber-400
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:12px;font-family:monospace;">
+        <span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#f59e0b;flex-shrink:0;"></span> color-amber-500
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:12px;font-family:monospace;">
+        <span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#d97706;flex-shrink:0;"></span> color-amber-600
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:12px;font-family:monospace;">
+        <span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#b45309;flex-shrink:0;"></span> color-amber-700
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:12px;font-family:monospace;">
+        <span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#ffffff;border:1px solid #e5e5e5;flex-shrink:0;"></span> color-neutral-0
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:12px;font-family:monospace;">
+        <span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#fafaf8;border:1px solid #e5e5e5;flex-shrink:0;"></span> color-neutral-50
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:12px;font-family:monospace;">
+        <span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#a8a29e;flex-shrink:0;"></span> color-neutral-400
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:12px;font-family:monospace;">
+        <span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#1c1917;flex-shrink:0;"></span> color-neutral-900
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:12px;font-family:monospace;">
+        <span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:#1a1208;flex-shrink:0;"></span> color-neutral-950
+      </div>
+
+      <div style="font-size:11px;font-weight:600;color:#9ca3af;text-transform:uppercase;letter-spacing:.05em;margin-top:8px;">Sizing</div>
+      <div style="font-size:12px;font-family:monospace;color:#374151;">spacing-10 · 10px</div>
+      <div style="font-size:12px;font-family:monospace;color:#374151;">spacing-22 · 22px</div>
+      <div style="font-size:12px;font-family:monospace;color:#374151;">font-size-14 · 14px</div>
+      <div style="font-size:12px;font-family:monospace;color:#374151;">font-weight-600 · 600</div>
+      <div style="font-size:12px;font-family:monospace;color:#374151;">radius-6 · 6px</div>
+    </div>
+  </div>
+
+  <!-- TIER 2 -->
+  <div style="background:var(--card-bg,#f8f8f8);border:1px solid var(--border,#e2e2e2);border-radius:10px;padding:20px;">
+    <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#6b7280;margin-bottom:12px;">Tier 2 · Semantic</div>
+    <div style="font-size:12px;color:#374151;margin-bottom:8px;font-weight:600;">Mode-aware — references primitives</div>
+
+    <div style="display:flex;flex-direction:column;gap:6px;margin-top:12px;">
+      <div style="font-size:11px;font-weight:600;color:#9ca3af;text-transform:uppercase;letter-spacing:.05em;">Light mode</div>
+      <div style="font-size:12px;font-family:monospace;color:#374151;">color-action-bg<br><span style="color:#9ca3af;">→ {color-amber-600}</span></div>
+      <div style="font-size:12px;font-family:monospace;color:#374151;">color-action-text<br><span style="color:#9ca3af;">→ {color-neutral-0}</span></div>
+      <div style="font-size:12px;font-family:monospace;color:#374151;">color-action-border<br><span style="color:#9ca3af;">→ {color-amber-600}</span></div>
+      <div style="font-size:12px;font-family:monospace;color:#374151;">color-surface-default<br><span style="color:#9ca3af;">→ {color-neutral-0}</span></div>
+      <div style="font-size:12px;font-family:monospace;color:#374151;">color-text-on-surface<br><span style="color:#9ca3af;">→ {color-neutral-900}</span></div>
+
+      <div style="font-size:11px;font-weight:600;color:#9ca3af;text-transform:uppercase;letter-spacing:.05em;margin-top:8px;">Dark mode (overrides)</div>
+      <div style="font-size:12px;font-family:monospace;color:#374151;">color-action-bg<br><span style="color:#9ca3af;">→ {color-amber-500}</span></div>
+      <div style="font-size:12px;font-family:monospace;color:#374151;">color-action-border<br><span style="color:#9ca3af;">→ {color-amber-500}</span></div>
+      <div style="font-size:12px;font-family:monospace;color:#374151;">color-surface-default<br><span style="color:#9ca3af;">→ {color-neutral-950}</span></div>
+      <div style="font-size:12px;font-family:monospace;color:#374151;">color-text-on-surface<br><span style="color:#9ca3af;">→ {color-neutral-400}</span></div>
+
+      <div style="font-size:11px;font-weight:600;color:#9ca3af;text-transform:uppercase;letter-spacing:.05em;margin-top:8px;">Sizing (no modes)</div>
+      <div style="font-size:12px;font-family:monospace;color:#374151;">size-button-padding-y<br><span style="color:#9ca3af;">→ {spacing-10}</span></div>
+      <div style="font-size:12px;font-family:monospace;color:#374151;">size-button-padding-x<br><span style="color:#9ca3af;">→ {spacing-22}</span></div>
+      <div style="font-size:12px;font-family:monospace;color:#374151;">size-button-radius<br><span style="color:#9ca3af;">→ {radius-6}</span></div>
+      <div style="font-size:12px;font-family:monospace;color:#374151;">size-button-font-size<br><span style="color:#9ca3af;">→ {font-size-14}</span></div>
+      <div style="font-size:12px;font-family:monospace;color:#374151;">size-button-font-weight<br><span style="color:#9ca3af;">→ {font-weight-600}</span></div>
+    </div>
+  </div>
+
+  <!-- TIER 3 -->
+  <div style="background:var(--card-bg,#f8f8f8);border:1px solid var(--border,#e2e2e2);border-radius:10px;padding:20px;">
+    <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#6b7280;margin-bottom:12px;">Tier 3 · Component</div>
+    <div style="font-size:12px;color:#374151;margin-bottom:8px;font-weight:600;">Button-specific — references semantic</div>
+
+    <div style="display:flex;flex-direction:column;gap:6px;margin-top:12px;">
+      <div style="font-size:11px;font-weight:600;color:#9ca3af;text-transform:uppercase;letter-spacing:.05em;">Primary variant</div>
+      <div style="font-size:12px;font-family:monospace;color:#374151;">button-primary-bg<br><span style="color:#9ca3af;">→ {color-action-bg}</span></div>
+      <div style="font-size:12px;font-family:monospace;color:#374151;">button-primary-text<br><span style="color:#9ca3af;">→ {color-action-text}</span></div>
+      <div style="font-size:12px;font-family:monospace;color:#374151;">button-primary-border<br><span style="color:#9ca3af;">→ transparent</span></div>
+
+      <div style="font-size:11px;font-weight:600;color:#9ca3af;text-transform:uppercase;letter-spacing:.05em;margin-top:8px;">Outlined variant</div>
+      <div style="font-size:12px;font-family:monospace;color:#374151;">button-outlined-bg<br><span style="color:#9ca3af;">→ {color-surface-default}</span></div>
+      <div style="font-size:12px;font-family:monospace;color:#374151;">button-outlined-text<br><span style="color:#9ca3af;">→ {color-action-border}</span></div>
+      <div style="font-size:12px;font-family:monospace;color:#374151;">button-outlined-border<br><span style="color:#9ca3af;">→ {color-action-border}</span></div>
+
+      <div style="font-size:11px;font-weight:600;color:#9ca3af;text-transform:uppercase;letter-spacing:.05em;margin-top:8px;">Shared sizing</div>
+      <div style="font-size:12px;font-family:monospace;color:#374151;">button-padding-y<br><span style="color:#9ca3af;">→ {size-button-padding-y}</span></div>
+      <div style="font-size:12px;font-family:monospace;color:#374151;">button-padding-x<br><span style="color:#9ca3af;">→ {size-button-padding-x}</span></div>
+      <div style="font-size:12px;font-family:monospace;color:#374151;">button-radius<br><span style="color:#9ca3af;">→ {size-button-radius}</span></div>
+      <div style="font-size:12px;font-family:monospace;color:#374151;">button-font-size<br><span style="color:#9ca3af;">→ {size-button-font-size}</span></div>
+      <div style="font-size:12px;font-family:monospace;color:#374151;">button-font-weight<br><span style="color:#9ca3af;">→ {size-button-font-weight}</span></div>
+    </div>
+  </div>
+
+</div>
+
+<div style="margin-top:24px;">
+  <div class="options">
+    <div class="option" data-choice="approved" onclick="toggleSelect(this)">
+      <div class="letter">A</div>
+      <div class="content"><h3>This looks right</h3><p>Proceed to the full JSON design</p></div>
+    </div>
+    <div class="option" data-choice="adjust" onclick="toggleSelect(this)">
+      <div class="letter">B</div>
+      <div class="content"><h3>Needs adjustment</h3><p>I'll describe what to change in the terminal</p></div>
+    </div>
+  </div>
+</div>

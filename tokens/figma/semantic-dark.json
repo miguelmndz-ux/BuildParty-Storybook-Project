@@ -1,0 +1,82 @@
+{
+  "color-action-bg": {
+    "$type": "color",
+    "$value": { "colorSpace": "srgb", "components": [0.9608, 0.6196, 0.0431], "alpha": 1, "hex": "#f59e0b" },
+    "$extensions": { "com.figma.aliasData": { "collection": "Primitives", "name": "color-amber-500" } }
+  },
+  "color-on-action": {
+    "$type": "color",
+    "$value": { "colorSpace": "srgb", "components": [1, 1, 1], "alpha": 1, "hex": "#ffffff" },
+    "$extensions": { "com.figma.aliasData": { "collection": "Primitives", "name": "color-neutral-0" } }
+  },
+  "color-action-emphasis": {
+    "$type": "color",
+    "$value": { "colorSpace": "srgb", "components": [0.9608, 0.6196, 0.0431], "alpha": 1, "hex": "#f59e0b" },
+    "$extensions": { "com.figma.aliasData": { "collection": "Primitives", "name": "color-amber-500" } }
+  },
+  "color-surface-default": {
+    "$type": "color",
+    "$value": { "colorSpace": "srgb", "components": [0.1020, 0.0706, 0.0314], "alpha": 1, "hex": "#1a1208" },
+    "$extensions": { "com.figma.aliasData": { "collection": "Primitives", "name": "color-neutral-950" } }
+  },
+  "color-text-on-surface": {
+    "$type": "color",
+    "$value": { "colorSpace": "srgb", "components": [0.6588, 0.6353, 0.6196], "alpha": 1, "hex": "#a8a29e" },
+    "$extensions": { "com.figma.aliasData": { "collection": "Primitives", "name": "color-neutral-400" } }
+  },
+  "padding-none": {
+    "$type": "dimension",
+    "$value": { "value": 0, "unit": "px" },
+    "$extensions": { "com.figma.aliasData": { "collection": "Primitives", "name": "sizing-0" } }
+  },
+  "padding-xxs": {
+    "$type": "dimension",
+    "$value": { "value": 4, "unit": "px" },
+    "$extensions": { "com.figma.aliasData": { "collection": "Primitives", "name": "sizing-1" } }
+  },
+  "padding-xs": {
+    "$type": "dimension",
+    "$value": { "value": 8, "unit": "px" },
+    "$extensions": { "com.figma.aliasData": { "collection": "Primitives", "name": "sizing-2" } }
+  },
+  "padding-sm": {
+    "$type": "dimension",
+    "$value": { "value": 12, "unit": "px" },
+    "$extensions": { "com.figma.aliasData": { "collection": "Primitives", "name": "sizing-3" } }
+  },
+  "padding-md": {
+    "$type": "dimension",
+    "$value": { "value": 16, "unit": "px" },
+    "$extensions": { "com.figma.aliasData": { "collection": "Primitives", "name": "sizing-4" } }
+  },
+  "padding-lg": {
+    "$type": "dimension",
+    "$value": { "value": 24, "unit": "px" },
+    "$extensions": { "com.figma.aliasData": { "collection": "Primitives", "name": "sizing-5" } }
+  },
+  "radius-none": {
+    "$type": "dimension",
+    "$value": { "value": 0, "unit": "px" },
+    "$extensions": { "com.figma.aliasData": { "collection": "Primitives", "name": "sizing-0" } }
+  },
+  "radius-sm": {
+    "$type": "dimension",
+    "$value": { "value": 8, "unit": "px" },
+    "$extensions": { "com.figma.aliasData": { "collection": "Primitives", "name": "sizing-2" } }
+  },
+  "radius-md": {
+    "$type": "dimension",
+    "$value": { "value": 12, "unit": "px" },
+    "$extensions": { "com.figma.aliasData": { "collection": "Primitives", "name": "sizing-3" } }
+  },
+  "radius-full": {
+    "$type": "dimension",
+    "$value": { "value": 9999, "unit": "px" },
+    "$extensions": { "com.figma.aliasData": { "collection": "Primitives", "name": "sizing-max" } }
+  },
+  "border-width-default": {
+    "$type": "dimension",
+    "$value": { "value": 1, "unit": "px" },
+    "$extensions": { "com.figma.aliasData": { "collection": "Primitives", "name": "border-width-1" } }
+  }
+}

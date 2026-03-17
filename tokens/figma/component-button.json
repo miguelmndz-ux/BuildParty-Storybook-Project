@@ -1,0 +1,62 @@
+{
+  "button-primary-bg": {
+    "$type": "color",
+    "$value": { "colorSpace": "srgb", "components": [0.8510, 0.4667, 0.0235], "alpha": 1, "hex": "#d97706" },
+    "$extensions": { "com.figma.aliasData": { "collection": "Semantic", "name": "color-action-bg" } }
+  },
+  "button-primary-text": {
+    "$type": "color",
+    "$value": { "colorSpace": "srgb", "components": [1, 1, 1], "alpha": 1, "hex": "#ffffff" },
+    "$extensions": { "com.figma.aliasData": { "collection": "Semantic", "name": "color-on-action" } }
+  },
+  "button-outlined-bg": {
+    "$type": "color",
+    "$value": { "colorSpace": "srgb", "components": [1, 1, 1], "alpha": 1, "hex": "#ffffff" },
+    "$extensions": { "com.figma.aliasData": { "collection": "Semantic", "name": "color-surface-default" } }
+  },
+  "button-outlined-text": {
+    "$type": "color",
+    "$value": { "colorSpace": "srgb", "components": [0.8510, 0.4667, 0.0235], "alpha": 1, "hex": "#d97706" },
+    "$extensions": { "com.figma.aliasData": { "collection": "Semantic", "name": "color-action-emphasis" } }
+  },
+  "button-outlined-border": {
+    "$type": "color",
+    "$value": { "colorSpace": "srgb", "components": [0.8510, 0.4667, 0.0235], "alpha": 1, "hex": "#d97706" },
+    "$extensions": { "com.figma.aliasData": { "collection": "Semantic", "name": "color-action-emphasis" } }
+  },
+  "button-outlined-border-width": {
+    "$type": "dimension",
+    "$value": { "value": 1, "unit": "px" },
+    "$extensions": { "com.figma.aliasData": { "collection": "Semantic", "name": "border-width-default" } }
+  },
+  "button-padding-y": {
+    "$type": "dimension",
+    "$value": { "value": 12, "unit": "px" },
+    "$extensions": { "com.figma.aliasData": { "collection": "Semantic", "name": "padding-sm" } }
+  },
+  "button-padding-x": {
+    "$type": "dimension",
+    "$value": { "value": 24, "unit": "px" },
+    "$extensions": { "com.figma.aliasData": { "collection": "Semantic", "name": "padding-lg" } }
+  },
+  "button-radius": {
+    "$type": "dimension",
+    "$value": { "value": 8, "unit": "px" },
+    "$extensions": { "com.figma.aliasData": { "collection": "Semantic", "name": "radius-sm" } }
+  },
+  "button-font-family": {
+    "$type": "fontFamily",
+    "$value": "Mona Sans",
+    "$extensions": { "com.figma.aliasData": { "collection": "Primitives", "name": "font-family-sans" } }
+  },
+  "button-font-size": {
+    "$type": "dimension",
+    "$value": { "value": 14, "unit": "px" },
+    "$extensions": { "com.figma.aliasData": { "collection": "Primitives", "name": "font-size-sm" } }
+  },
+  "button-font-weight": {
+    "$type": "number",
+    "$value": 600,
+    "$extensions": { "com.figma.aliasData": { "collection": "Primitives", "name": "font-weight-semibold" } }
+  }
+}

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Button Preview — BuildParty</title>
+  <link rel="preconnect" href="https://api.fontshare.com" />
+  <link href="https://api.fontshare.com/v2/css?f[]=mona-sans@400,600&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Design tokens ── */
+    :root {
+      /* Button tokens */
+      --btn-primary-bg: #d97706;
+      --btn-primary-text: #ffffff;
+      --btn-border-color: #b45309;
+      --btn-padding-x: 16px;
+      --btn-padding-y: 8px;
+      --btn-radius: 8px;
+      --btn-font-size: 14px;
+      --btn-font-weight: 600;
+      --btn-letter-spacing: 1px;
+      --btn-line-height: 1.3;
+      --btn-border-width: 2px;
+
+      /* Page tokens */
+      --text: #6b6375;
+      --text-h: #08060d;
+      --bg: #fff;
+      --border: #e5e4e7;
+      --sans: 'Mona Sans', system-ui, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    /* ── Reset & base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      font-size: 18px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Layout wrapper ── */
+    .page {
+      max-width: 1126px;
+      margin: 0 auto;
+      border-inline: 1px solid var(--border);
+      min-height: 100svh;
+    }
+
+    /* ── Navbar ── */
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      height: 60px;
+      border-bottom: 1px solid var(--border);
+    }
+    .navbar__logo {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-h);
+      letter-spacing: 0.5px;
+    }
+    .navbar__links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    .navbar__links a {
+      font-size: 14px;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    /* ── Hero section ── */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 96px 48px 64px;
+      gap: 24px;
+    }
+    .hero__headline {
+      font-family: var(--sans);
+      font-size: 52px;
+      font-weight: 400;
+      letter-spacing: -1.5px;
+      line-height: 1.1;
+      color: var(--text-h);
+    }
+    .hero__subtext {
+      font-size: 18px;
+      color: var(--text);
+      max-width: 480px;
+    }
+
+    /* ── CTA band ── */
+    .cta-band {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 20px;
+      padding: 64px 48px;
+    }
+    .cta-band__tagline {
+      font-size: 24px;
+      font-weight: 400;
+      letter-spacing: -0.24px;
+      color: var(--text-h);
+    }
+
+    /* ── Button — shared ── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--btn-padding-y) var(--btn-padding-x);
+      border-radius: var(--btn-radius);
+      font-size: var(--btn-font-size);
+      font-weight: var(--btn-font-weight);
+      letter-spacing: var(--btn-letter-spacing);
+      line-height: var(--btn-line-height);
+      text-transform: uppercase;
+      white-space: nowrap;
+      user-select: none;
+      border-style: solid;
+      cursor: pointer;
+      font-family: var(--sans);
+      margin-top: 8px;
+    }
+
+    /* ── Button — primary ── */
+    .btn--primary {
+      background: var(--btn-primary-bg);
+      color: var(--btn-primary-text);
+      border-width: 0 0 var(--btn-border-width) var(--btn-border-width);
+      border-color: var(--btn-border-color);
+      border-style: solid;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- Navbar -->
+    <nav class="navbar">
+      <span class="navbar__logo">BuildParty</span>
+      <ul class="navbar__links">
+        <li><a href="#">Sessions</a></li>
+        <li><a href="#">Community</a></li>
+        <li><a href="#">Docs</a></li>
+      </ul>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+      <h1 class="hero__headline">Build live.<br>Build together.</h1>
+      <p class="hero__subtext">
+        The live platform for AI builder communities — structured sessions,
+        real-time interaction, and agents that participate.
+      </p>
+      <button class="btn btn--primary">Join a session</button>
+    </section>
+
+    <!-- CTA band -->
+    <section class="cta-band">
+      <p class="cta-band__tagline">Your next build session starts now.</p>
+      <button class="btn btn--primary">Start building</button>
+    </section>
+
+  </div>
+</body>
+</html>
