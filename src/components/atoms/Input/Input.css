@@ -1,0 +1,72 @@
+.input-root {
+  display: flex;
+  align-items: center;
+  gap: var(--input-gap, 4px);
+  padding: var(--input-padding-y, 9px) var(--input-padding-x, 13px);
+  border: 2px solid var(--input-border, #d6d3d1);
+  border-radius: var(--input-radius, 12px);
+  background: var(--input-bg, #fff);
+  transition: border-color 0.15s ease;
+  box-sizing: border-box;
+}
+
+.input-root:hover:not(.input-root--disabled) {
+  border-color: var(--input-border-hover, #b45309);
+}
+
+.input-root--disabled {
+  background: var(--input-bg-disabled, #e7e5e4);
+  border-color: var(--input-border-disabled, #d6d3d1);
+  cursor: not-allowed;
+}
+
+.input-field {
+  flex: 1 0 0;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: var(--font-family-sans, system-ui, sans-serif);
+  font-size: var(--input-font-size, 16px);
+  font-weight: var(--input-font-weight, 400);
+  line-height: var(--input-line-height, 24px);
+  letter-spacing: 0;
+  color: var(--input-text, #292524);
+}
+
+.input-field::placeholder {
+  color: var(--input-text, #292524);
+  font-weight: var(--input-font-weight, 400);
+}
+
+.input-field:disabled {
+  color: var(--input-text-disabled, #a8a29e);
+  cursor: not-allowed;
+}
+
+.input-field:disabled::placeholder {
+  color: var(--input-text-disabled, #a8a29e);
+}
+
+.input-icon {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  width: var(--input-icon-size, 20px);
+  height: var(--input-icon-size, 20px);
+  color: var(--input-text, #292524);
+}
+
+/* CSS beats SVG presentation attributes — overrides Phosphor's inline strokeWidth */
+.input-icon svg path,
+.input-icon svg circle,
+.input-icon svg line,
+.input-icon svg polyline,
+.input-icon svg rect,
+.input-icon svg ellipse {
+  stroke-width: 2px;
+}
+
+.input-root--disabled .input-icon {
+  color: var(--input-text-disabled, #a8a29e);
+}
