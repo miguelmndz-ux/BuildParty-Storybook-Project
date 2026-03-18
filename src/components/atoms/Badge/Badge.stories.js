@@ -22,6 +22,7 @@ const meta = {
 
 export default meta;
 
+// CI test: triggering workflow via story comment update
 /** Filled amber badge — action-subtle surface with amber border. */
 export const Primary = {
   args: {
