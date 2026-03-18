@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BuildParty — Badge Component</title>
+  <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+  <style>
+    /* ── Tokens ──────────────────────────────────────── */
+    :root {
+      /* Primitives */
+      --grey-0:   #FFFFFF;
+      --grey-50:  #FAFAF8;
+      --grey-100: #F5F5F4;
+      --grey-200: #E7E5E4;
+      --grey-300: #D6D3D1;
+      --grey-400: #A8A29E;
+      --grey-500: #78716C;
+      --grey-700: #44403C;
+      --grey-800: #292524;
+      --grey-900: #1C1917;
+
+      --amber-100: #FEF3C7;
+      --amber-200: #FDE68A;
+      --amber-300: #FCD34D;
+      --amber-400: #FBBF24;
+      --amber-500: #F59E0B;
+      --amber-600: #D97706;
+      --amber-700: #B45309;
+      --amber-800: #92400E;
+      --amber-900: #78350F;
+
+      --green-100: #DCFCE7;
+      --green-200: #BBF7D0;
+      --green-600: #16A34A;
+      --green-700: #15803D;
+
+      --red-100:   #FEE2E2;
+      --red-200:   #FECACA;
+      --red-600:   #DC2626;
+      --red-700:   #B91C1C;
+
+      --blue-100:  #DBEAFE;
+      --blue-200:  #BFDBFE;
+      --blue-600:  #2563EB;
+      --blue-700:  #1D4ED8;
+
+      /* Mapped */
+      --color-text-body:    var(--grey-700);
+      --color-text-subtle:  var(--grey-400);
+      --color-text-heading: var(--grey-900);
+      --font-sans: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-sans);
+      background: #F4F3F0;
+      color: var(--color-text-body);
+      padding: 48px;
+    }
+
+    .page-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--color-text-heading);
+      margin-bottom: 8px;
+    }
+    .page-subtitle {
+      font-size: 14px;
+      color: var(--color-text-subtle);
+      margin-bottom: 48px;
+    }
+
+    .section { margin-bottom: 48px; }
+    .section-title {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-text-subtle);
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--grey-200);
+    }
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      align-items: flex-start;
+    }
+    .col {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: flex-start;
+    }
+    .col-label {
+      font-size: 11px;
+      color: var(--color-text-subtle);
+      font-weight: 500;
+    }
+
+    /* ── Base Badge ──────────────────────────────────── */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-weight: 500;
+      white-space: nowrap;
+      line-height: 1;
+      border: 1.5px solid transparent;
+    }
+
+    /* Sizes */
+    .badge.sm {
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 4px;
+      gap: 4px;
+    }
+    .badge.md {
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      gap: 5px;
+    }
+    .badge.lg {
+      font-size: 13px;
+      padding: 5px 12px;
+      border-radius: 8px;
+      gap: 6px;
+    }
+
+    /* Pill modifier */
+    .badge.pill.sm { border-radius: 999px; }
+    .badge.pill.md { border-radius: 999px; }
+    .badge.pill.lg { border-radius: 999px; }
+
+    /* ── Primary variant ─────────────────────────────── */
+    /* Soft (default primary look) */
+    .badge.primary {
+      background: var(--amber-100);
+      color: var(--amber-800);
+      border-color: var(--amber-200);
+    }
+
+    /* Strong primary */
+    .badge.primary-strong {
+      background: var(--amber-500);
+      color: var(--grey-900);
+      border-color: var(--amber-500);
+    }
+
+    /* ── Outline variant (neutral) ───────────────────── */
+    .badge.outline {
+      background: var(--grey-0);
+      color: var(--grey-700);
+      border-color: var(--grey-300);
+    }
+
+    /* Subtle outline (filled neutral) */
+    .badge.outline-subtle {
+      background: var(--grey-100);
+      color: var(--grey-700);
+      border-color: var(--grey-200);
+    }
+
+    /* ── Semantic variants (for reference palette) ───── */
+    .badge.success {
+      background: var(--green-100);
+      color: var(--green-700);
+      border-color: var(--green-200);
+    }
+    .badge.error {
+      background: var(--red-100);
+      color: var(--red-700);
+      border-color: var(--red-200);
+    }
+    .badge.info {
+      background: var(--blue-100);
+      color: var(--blue-700);
+      border-color: var(--blue-200);
+    }
+
+    /* ── Dot indicator ───────────────────────────────── */
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .primary    .badge-dot { background: var(--amber-600); }
+    .primary-strong .badge-dot { background: var(--grey-900); }
+    .outline    .badge-dot { background: var(--grey-500); }
+    .outline-subtle .badge-dot { background: var(--grey-500); }
+    .success    .badge-dot { background: var(--green-600); }
+    .error      .badge-dot { background: var(--red-600); }
+    .info       .badge-dot { background: var(--blue-600); }
+
+    /* ── Icon in badge ───────────────────────────────── */
+    .badge svg { flex-shrink: 0; }
+
+    /* ── Count badge (notification) ─────────────────── */
+    .badge.count {
+      padding: 2px 7px;
+      border-radius: 999px;
+      min-width: 20px;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    /* ── Divider ─────────────────────────────────────── */
+    .divider {
+      width: 1px;
+      height: 12px;
+      background: var(--grey-200);
+    }
+  </style>
+</head>
+<body>
+
+  <p class="page-title">Badge</p>
+  <p class="page-subtitle">BuildParty Design System — Atom</p>
+
+  <!-- ── PRIMARY ────────────────────────────────────── -->
+  <div class="section">
+    <p class="section-title">Primary</p>
+    <div class="row">
+
+      <!-- Sizes -->
+      <div class="col">
+        <span class="col-label">Sizes</span>
+        <span class="badge primary sm">Small</span>
+        <span class="badge primary md">Medium</span>
+        <span class="badge primary lg">Large</span>
+      </div>
+
+      <!-- With dot -->
+      <div class="col">
+        <span class="col-label">With dot</span>
+        <span class="badge primary sm"><span class="badge-dot"></span> Small</span>
+        <span class="badge primary md"><span class="badge-dot"></span> Medium</span>
+        <span class="badge primary lg"><span class="badge-dot"></span> Large</span>
+      </div>
+
+      <!-- With icon -->
+      <div class="col">
+        <span class="col-label">With icon</span>
+        <span class="badge primary sm">
+          <svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+          </svg>
+          New
+        </span>
+        <span class="badge primary md">
+          <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+          </svg>
+          Featured
+        </span>
+        <span class="badge primary lg">
+          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+          </svg>
+          Featured
+        </span>
+      </div>
+
+      <!-- Pill shape -->
+      <div class="col">
+        <span class="col-label">Pill</span>
+        <span class="badge primary pill sm">Live</span>
+        <span class="badge primary pill md"><span class="badge-dot"></span> Live now</span>
+        <span class="badge primary pill lg"><span class="badge-dot"></span> Live now</span>
+      </div>
+
+      <!-- Strong fill -->
+      <div class="col">
+        <span class="col-label">Strong fill</span>
+        <span class="badge primary-strong sm">New</span>
+        <span class="badge primary-strong md"><span class="badge-dot"></span> Live</span>
+        <span class="badge primary-strong pill lg">
+          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/>
+          </svg>
+          Soon
+        </span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── OUTLINE (Neutral) ───────────────────────────── -->
+  <div class="section">
+    <p class="section-title">Outline — Neutral</p>
+    <div class="row">
+
+      <!-- Sizes -->
+      <div class="col">
+        <span class="col-label">Sizes</span>
+        <span class="badge outline sm">Small</span>
+        <span class="badge outline md">Medium</span>
+        <span class="badge outline lg">Large</span>
+      </div>
+
+      <!-- With dot -->
+      <div class="col">
+        <span class="col-label">With dot</span>
+        <span class="badge outline sm"><span class="badge-dot"></span> Pending</span>
+        <span class="badge outline md"><span class="badge-dot"></span> Pending</span>
+        <span class="badge outline lg"><span class="badge-dot"></span> Pending</span>
+      </div>
+
+      <!-- With icon -->
+      <div class="col">
+        <span class="col-label">With icon</span>
+        <span class="badge outline sm">
+          <svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/>
+          </svg>
+          Draft
+        </span>
+        <span class="badge outline md">
+          <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/>
+          </svg>
+          Scheduled
+        </span>
+        <span class="badge outline lg">
+          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/>
+          </svg>
+          Scheduled
+        </span>
+      </div>
+
+      <!-- Pill -->
+      <div class="col">
+        <span class="col-label">Pill</span>
+        <span class="badge outline pill sm">Beta</span>
+        <span class="badge outline pill md"><span class="badge-dot"></span> Archived</span>
+        <span class="badge outline pill lg"><span class="badge-dot"></span> Archived</span>
+      </div>
+
+      <!-- Subtle fill -->
+      <div class="col">
+        <span class="col-label">Subtle fill</span>
+        <span class="badge outline-subtle sm">Draft</span>
+        <span class="badge outline-subtle md"><span class="badge-dot"></span> Inactive</span>
+        <span class="badge outline-subtle pill lg">
+          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M18 6L6 18M6 6l12 12"/>
+          </svg>
+          Closed
+        </span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── SEMANTIC PALETTE ───────────────────────────── -->
+  <div class="section">
+    <p class="section-title">Semantic Palette (reference)</p>
+    <div class="row">
+
+      <div class="col">
+        <span class="col-label">Primary</span>
+        <span class="badge primary md"><span class="badge-dot"></span> Featured</span>
+        <span class="badge primary pill md"><span class="badge-dot"></span> Live</span>
+      </div>
+
+      <div class="col">
+        <span class="col-label">Success</span>
+        <span class="badge success md"><span class="badge-dot"></span> Published</span>
+        <span class="badge success pill md"><span class="badge-dot"></span> Active</span>
+      </div>
+
+      <div class="col">
+        <span class="col-label">Error</span>
+        <span class="badge error md"><span class="badge-dot"></span> Failed</span>
+        <span class="badge error pill md"><span class="badge-dot"></span> Banned</span>
+      </div>
+
+      <div class="col">
+        <span class="col-label">Info</span>
+        <span class="badge info md"><span class="badge-dot"></span> In review</span>
+        <span class="badge info pill md"><span class="badge-dot"></span> Syncing</span>
+      </div>
+
+      <div class="col">
+        <span class="col-label">Neutral</span>
+        <span class="badge outline md"><span class="badge-dot"></span> Draft</span>
+        <span class="badge outline pill md"><span class="badge-dot"></span> Archived</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── CONTENT VARIATIONS ─────────────────────────── -->
+  <div class="section">
+    <p class="section-title">Content Variations</p>
+    <div class="row">
+
+      <!-- Text only -->
+      <div class="col">
+        <span class="col-label">Text only</span>
+        <span class="badge primary md">Launch Day</span>
+        <span class="badge outline md">Creator Class</span>
+        <span class="badge success md">Published</span>
+      </div>
+
+      <!-- Count / number badges -->
+      <div class="col">
+        <span class="col-label">Count badges</span>
+        <span class="badge primary-strong count">3</span>
+        <span class="badge primary-strong count">12</span>
+        <span class="badge outline count">99+</span>
+      </div>
+
+      <!-- Icon only -->
+      <div class="col">
+        <span class="col-label">Icon + text (BuildParty)</span>
+        <span class="badge primary md">
+          <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+          </svg>
+          Demo Session
+        </span>
+        <span class="badge primary md">
+          <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+          42 Attending
+        </span>
+        <span class="badge outline-subtle md">
+          <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+          </svg>
+          Mar 17
+        </span>
+      </div>
+
+      <!-- With trailing close -->
+      <div class="col">
+        <span class="col-label">Dismissible (with close)</span>
+        <span class="badge primary md">
+          Launch Day
+          <svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </span>
+        <span class="badge outline md">
+          Creator Class
+          <svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </span>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>

@@ -99,35 +99,60 @@ Components emerge from design exploration — do not predefine them. Check Story
 
 ## Design Token Mapping
 
-CSS custom properties are defined in `src/index.css`. Tokens here are **placeholders** — update them as you define your actual design system. Map Figma variables to these tokens when implementing designs.
+CSS custom properties are defined in `src/index.css`. Map Figma variables to these tokens when implementing designs.
 
-### Color Tokens
+### Fixed vs. Theme-Aware Tokens
+
+The design system is **light-mode only**. Never use these variables in component CSS — they flip in dark mode and will break the design:
+- `--text`, `--text-h`, `--text-body`, `--bg`, `--border`
+
+Always use the fixed `--color-*` tokens instead:
+
+| Purpose | Token | Value |
+|---|---|---|
+| Page / card surface | `--color-surface-default` | `#ffffff` |
+| Disabled surface | `--color-surface-disabled` | `#e7e5e4` |
+| Default border | `--color-border-default` | `#d6d3d1` |
+| Subtle border | `--color-border-subtle` | `#a8a29e` |
+| Heading text | `--color-text-heading` | `#1c1917` |
+| Body text | `--color-text-body` | `#292524` |
+| Muted text | `--color-text-muted` | `#6b6375` |
+| Disabled text | `--color-text-disabled` | `#a8a29e` |
+
+### Component-Specific Tokens (defined in `src/index.css`)
+| Group | Prefix | Example tokens |
+|---|---|---|
+| Button | `--btn-*` | `--btn-action`, `--btn-primary-text`, `--btn-border-color` |
+| Input | `--input-*` | `--input-border`, `--input-bg`, `--input-text` |
+| Badge | `--badge-*` | `--badge-primary-bg`, `--badge-primary-border`, `--badge-text` |
+| Icons | `--icon-*` | `--icon-xl`, `--icon-lg`, `--icon-md`, `--icon-sm`, `--icon-color` |
+| Typography | `--type-*` | `--type-h1-size`, `--type-paragraph-md-size`, `--type-h6-lh` |
+
+### Theme-Aware Tokens (app shell only — do NOT use in components)
 | Figma Variable | CSS Custom Property | Light Value | Dark Value |
 |---|---|---|---|
 | `colors/text/default` | `var(--text)` | `#6b6375` | `#9ca3af` |
-| `colors/text/heading` | `var(--text-h)` | `#08060d` | `#f3f4f6` |
+| `colors/text/heading` | `var(--text-h)` | `#1c1917` | `#f3f4f6` |
 | `colors/background/default` | `var(--bg)` | `#ffffff` | `#16171d` |
 | `colors/border/default` | `var(--border)` | `#e5e4e7` | `#2e303a` |
-| `colors/accent/default` | `var(--accent)` | `#aa3bff` | `#c084fc` |
-| `colors/accent/background` | `var(--accent-bg)` | `rgba(170,59,255,0.1)` | `rgba(192,132,252,0.15)` |
-| `colors/accent/border` | `var(--accent-border)` | `rgba(170,59,255,0.5)` | `rgba(192,132,252,0.5)` |
 | `colors/code/background` | `var(--code-bg)` | `#f4f3ec` | `#1f2028` |
 
-### Typography Tokens
+### Typography Font Tokens
 | Figma Variable | CSS Custom Property | Value |
 |---|---|---|
-| `typography/font/sans` | `var(--sans)` | `system-ui, 'Segoe UI', Roboto, sans-serif` |
-| `typography/font/heading` | `var(--heading)` | `system-ui, 'Segoe UI', Roboto, sans-serif` |
+| `typography/font/sans` | `var(--sans)` | `'Mona Sans', system-ui, 'Segoe UI', Roboto, sans-serif` |
+| `typography/font/heading` | `var(--heading)` | `'Mona Sans', system-ui, 'Segoe UI', Roboto, sans-serif` |
 | `typography/font/mono` | `var(--mono)` | `ui-monospace, Consolas, monospace` |
 
-### Placeholder Mappings (add real Figma variable names when available)
-| Figma Variable | CSS / Value |
-|---|---|
-| `spacing/sm` | `8px` |
-| `spacing/md` | `16px` |
-| `spacing/lg` | `32px` |
-| `radius/default` | `4px` |
-| `shadow/default` | `var(--shadow)` |
+---
+
+## Branch & PR Workflow
+
+When creating branches and PRs for multiple components simultaneously:
+
+- **Use `git worktree`** — create a parallel working directory (e.g. `../buildparty-prs`) for all branch/PR operations so the running Storybook dev server is never disturbed.
+- **Molecule branches must include atom dependencies** — if a molecule (e.g. FormField) depends on an atom that lives on a different branch, cherry-pick those atom files onto the molecule branch before opening the PR (`git checkout <atom-branch> -- src/components/atoms/<AtomName>/`).
+- One branch and one PR per GitHub issue. Branch naming: `feat/<component-name>`.
 
 ---
 
@@ -165,9 +190,10 @@ src/
 1. Pull design context with `get_design_context` (Figma MCP)
 2. Check Storybook MCP for existing components before creating new ones
 3. Map Figma variables to tokens in `src/index.css` — add new tokens as needed
-4. Build component + co-located CSS file (`ComponentName.jsx` + `ComponentName.css`)
-5. Write story → preview via Storybook MCP (`preview-stories`)
-6. Add Code Connect mapping once the Figma component is stable
+4. **Verify token fallback values** — when `get_design_context` returns a variable reference (e.g. `border/default`), read the fallback hex value from the response and confirm it matches the CSS custom property in `src/index.css` before writing component CSS. Do not assume token names map 1:1.
+5. Build component + co-located CSS file (`ComponentName.jsx` + `ComponentName.css`)
+6. Write story → preview via Storybook MCP (`preview-stories`)
+7. Add Code Connect mapping once the Figma component is stable
 
 ---
 

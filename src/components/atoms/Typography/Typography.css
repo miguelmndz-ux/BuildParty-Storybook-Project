@@ -1,0 +1,103 @@
+.typography {
+  margin: 0;
+  letter-spacing: 0;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Headings ──────────────────────────────────── */
+/* Font family/Headings = Mona Sans, Bold (700), Text/heading = #1c1917 */
+
+.typography--h1 {
+  font-family: var(--heading);
+  font-size: var(--type-h1-size);       /* 60px */
+  font-weight: 700;
+  line-height: var(--type-h1-lh);       /* 72px */
+  letter-spacing: 0;
+  color: var(--color-text-heading);     /* #1c1917 */
+}
+
+.typography--h2 {
+  font-family: var(--heading);
+  font-size: var(--type-h2-size);       /* 48px */
+  font-weight: 700;
+  line-height: var(--type-h2-lh);       /* 58px */
+  letter-spacing: 0;
+  color: var(--color-text-heading);
+}
+
+.typography--h3 {
+  font-family: var(--heading);
+  font-size: var(--type-h3-size);       /* 40px */
+  font-weight: 700;
+  line-height: var(--type-h3-lh);       /* 48px */
+  letter-spacing: 0;
+  color: var(--color-text-heading);
+}
+
+.typography--h4 {
+  font-family: var(--heading);
+  font-size: var(--type-h4-size);       /* 32px */
+  font-weight: 700;
+  line-height: var(--type-h4-lh);       /* 40px */
+  letter-spacing: 0;
+  color: var(--color-text-heading);
+}
+
+.typography--h5 {
+  font-family: var(--heading);
+  font-size: var(--type-h5-size);       /* 24px */
+  font-weight: 700;
+  line-height: var(--type-h5-lh);       /* 28px */
+  letter-spacing: 0;
+  color: var(--color-text-heading);
+}
+
+.typography--h6 {
+  font-family: var(--heading);
+  font-size: var(--type-h6-size);       /* 20px */
+  font-weight: 700;
+  line-height: var(--type-h6-lh);       /* 24px */
+  letter-spacing: 0;
+  color: var(--color-text-heading);
+}
+
+/* ── Paragraphs ────────────────────────────────── */
+/* Font family/Body = Mona Sans, Regular (400), Text/body = #292524 */
+
+.typography--paragraph-lg {
+  font-family: var(--sans);
+  font-size: var(--type-paragraph-lg-size);   /* 20px */
+  font-weight: 400;
+  line-height: var(--type-paragraph-lg-lh);   /* 28px */
+  letter-spacing: 0;
+  color: var(--color-text-body);              /* #292524 */
+}
+
+.typography--paragraph-md {
+  font-family: var(--sans);
+  font-size: var(--type-paragraph-md-size);   /* 16px */
+  font-weight: 400;
+  line-height: var(--type-paragraph-md-lh);   /* 24px */
+  letter-spacing: 0;
+  color: var(--color-text-body);
+}
+
+.typography--paragraph-sm {
+  font-family: var(--sans);
+  font-size: var(--type-paragraph-sm-size);   /* 14px */
+  font-weight: 400;
+  line-height: var(--type-paragraph-sm-lh);   /* 20px */
+  letter-spacing: 0;
+  color: var(--color-text-body);
+}
+
+.typography--paragraph-xsm {
+  font-family: var(--sans);
+  font-size: var(--type-paragraph-xsm-size);  /* 12px */
+  font-weight: 400;
+  line-height: var(--type-paragraph-xsm-lh);  /* 16px */
+  letter-spacing: 0;
+  color: var(--color-text-body);
+}
