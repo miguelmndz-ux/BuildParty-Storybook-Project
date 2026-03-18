@@ -1,4 +1,4 @@
-import { fn } from 'storybook/test';
+import { fn, expect } from 'storybook/test';
 import { Card } from './Card';
 
 /** @type {import('@storybook/react-vite').Meta<typeof Card>} */
@@ -18,4 +18,13 @@ const meta = {
 export default meta;
 
 /** Session card with badge, title, description, and a primary CTA. */
-export const Default = {};
+export const Default = {
+  play: async ({ canvasElement }) => {
+    const card = canvasElement.querySelector('.card');
+    await expect(card).toBeInTheDocument();
+
+    const button = canvasElement.querySelector('button');
+    await expect(button).toBeInTheDocument();
+    await expect(button).toBeEnabled();
+  },
+};

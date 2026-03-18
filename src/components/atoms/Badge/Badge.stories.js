@@ -15,17 +15,18 @@ const meta = {
     label: {
       control: 'text',
       description: 'Badge label text',
-      table: { defaultValue: { summary: 'Agentic' } },
+      table: { defaultValue: { summary: 'Agents' } },
     },
   },
 };
 
 export default meta;
 
+// CI test: triggering workflow via story comment update
 /** Filled amber badge — action-subtle surface with amber border. */
 export const Primary = {
   args: {
-    label: 'Agentic',
+    label: 'Agents',
     variant: 'primary',
   },
 };
@@ -33,7 +34,7 @@ export const Primary = {
 /** White badge with subtle gray border — neutral/secondary style. */
 export const Outline = {
   args: {
-    label: 'Agentic',
+    label: 'Agents',
     variant: 'outline',
   },
 };

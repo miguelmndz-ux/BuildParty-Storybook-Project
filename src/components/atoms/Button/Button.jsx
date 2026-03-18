@@ -1,18 +1,3 @@
-import React from 'react';
-
-export type ButtonVariant = 'primary' | 'outline';
-
-export interface ButtonProps {
-  /** Button label text */
-  label?: string;
-  /** Visual variant — primary is filled amber, outline is transparent with border */
-  variant?: ButtonVariant;
-  /** Disables the button and reduces opacity to 50% */
-  disabled?: boolean;
-  /** Click handler */
-  onClick?: () => void;
-}
-
 /**
  * BuildParty Button atom.
  *
@@ -29,7 +14,7 @@ export function Button({
   variant = 'primary',
   disabled = false,
   onClick,
-}: ButtonProps) {
+}) {
   const base =
     'inline-flex items-center justify-center ' +
     'px-[16px] py-[8px] rounded-[12px] ' +

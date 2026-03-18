@@ -1,8 +1,8 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
 import { fn, userEvent, expect } from 'storybook/test';
 import { Button } from './Button';
 
-const meta: Meta<typeof Button> = {
+/** @type {import('@storybook/react-vite').Meta<typeof Button>} */
+const meta = {
   title: 'Atoms/Button',
   component: Button,
   tags: ['autodocs'],
@@ -36,10 +36,9 @@ const meta: Meta<typeof Button> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof Button>;
 
 /** Filled amber button — the default action style. */
-export const Primary: Story = {
+export const Primary = {
   args: {
     label: 'BUTTON',
     variant: 'primary',
@@ -55,7 +54,7 @@ export const Primary: Story = {
 };
 
 /** Transparent button with an amber border — for secondary actions. */
-export const Outlined: Story = {
+export const Outlined = {
   args: {
     label: 'BUTTON',
     variant: 'outline',
@@ -71,7 +70,7 @@ export const Outlined: Story = {
 };
 
 /** Primary button in disabled state — opacity 50%, click does nothing. */
-export const DisabledPrimary: Story = {
+export const DisabledPrimary = {
   args: {
     label: 'BUTTON',
     variant: 'primary',
@@ -86,7 +85,7 @@ export const DisabledPrimary: Story = {
 };
 
 /** Outline button in disabled state — opacity 50%, click does nothing. */
-export const DisabledOutline: Story = {
+export const DisabledOutline = {
   args: {
     label: 'BUTTON',
     variant: 'outline',
