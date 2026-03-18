@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { fn, userEvent, expect, within } from 'storybook/test';
+import { fn, userEvent, expect } from 'storybook/test';
 import { Button } from './Button';
 
 const meta: Meta<typeof Button> = {
@@ -45,12 +45,12 @@ export const Primary: Story = {
     variant: 'primary',
     disabled: false,
   },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
+  play: async ({ canvas, args }) => {
     const button = canvas.getByRole('button', { name: /button/i });
     await expect(button).toBeVisible();
     await expect(button).toBeEnabled();
     await userEvent.click(button);
+    await expect(args.onClick).toHaveBeenCalledOnce();
   },
 };
 
@@ -61,27 +61,38 @@ export const Outlined: Story = {
     variant: 'outline',
     disabled: false,
   },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
+  play: async ({ canvas, args }) => {
     const button = canvas.getByRole('button', { name: /button/i });
     await expect(button).toBeVisible();
     await expect(button).toBeEnabled();
-    await expect(button).not.toHaveClass('bg-btn-primary-bg');
+    await userEvent.click(button);
+    await expect(args.onClick).toHaveBeenCalledOnce();
   },
 };
 
-/**
- * Disabled state — shown as Primary by default.
- * Toggle the `variant` control to `outline` to preview the disabled outline style.
- */
-export const Disabled: Story = {
+/** Primary button in disabled state — opacity 50%, click does nothing. */
+export const DisabledPrimary: Story = {
   args: {
     label: 'BUTTON',
     variant: 'primary',
     disabled: true,
   },
-  play: async ({ canvasElement, args }) => {
-    const canvas = within(canvasElement);
+  play: async ({ canvas, args }) => {
+    const button = canvas.getByRole('button', { name: /button/i });
+    await expect(button).toBeDisabled();
+    await userEvent.click(button);
+    await expect(args.onClick).not.toHaveBeenCalled();
+  },
+};
+
+/** Outline button in disabled state — opacity 50%, click does nothing. */
+export const DisabledOutline: Story = {
+  args: {
+    label: 'BUTTON',
+    variant: 'outline',
+    disabled: true,
+  },
+  play: async ({ canvas, args }) => {
     const button = canvas.getByRole('button', { name: /button/i });
     await expect(button).toBeDisabled();
     await userEvent.click(button);

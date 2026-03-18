@@ -26,7 +26,7 @@ export default defineConfig({
         browser: {
           enabled: true,
           headless: true,
-          provider: playwright({}),
+          provider: playwright({ contextOptions: { colorScheme: 'light' } }),
           instances: [{
             browser: 'chromium'
           }]

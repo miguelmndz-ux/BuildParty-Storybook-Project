@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BuildParty — Checkbox Component</title>
+  <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+  <style>
+    /* ── Tokens ──────────────────────────────────────── */
+    :root {
+      --grey-0:   #FFFFFF;
+      --grey-50:  #FAFAF8;
+      --grey-100: #F5F5F4;
+      --grey-200: #E7E5E4;
+      --grey-300: #D6D3D1;
+      --grey-400: #A8A29E;
+      --grey-700: #44403C;
+      --grey-800: #292524;
+      --grey-900: #1C1917;
+
+      --amber-100: #FEF3C7;
+      --amber-300: #FCD34D;
+      --amber-400: #FBBF24;
+      --amber-500: #F59E0B;
+      --amber-600: #D97706;
+      --amber-700: #B45309;
+
+      --color-surface-default:   var(--grey-0);
+      --color-surface-page:      var(--grey-50);
+      --color-surface-disabled:  var(--grey-100);
+
+      --color-border-default:    var(--grey-300);
+      --color-border-hover:      var(--amber-500);
+      --color-border-focus:      var(--amber-500);
+      --color-border-disabled:   var(--grey-200);
+
+      --color-action:            var(--amber-500);
+      --color-action-hover:      var(--amber-600);
+      --color-action-active:     var(--amber-700);
+
+      --color-text-heading:      var(--grey-900);
+      --color-text-body:         var(--grey-700);
+      --color-text-subtle:       var(--grey-400);
+      --color-text-disabled:     var(--grey-400);
+
+      --font-sans: 'Inter', 'Segoe UI', system-ui, sans-serif;
+      --radius-sm: 4px;
+      --radius-md: 6px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-sans);
+      background: #F4F3F0;
+      color: var(--color-text-body);
+      padding: 48px;
+    }
+
+    .page-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--color-text-heading);
+      margin-bottom: 8px;
+    }
+    .page-subtitle {
+      font-size: 14px;
+      color: var(--color-text-subtle);
+      margin-bottom: 48px;
+    }
+
+    .section { margin-bottom: 48px; }
+    .section-title {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-text-subtle);
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--grey-200);
+    }
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px;
+      align-items: flex-start;
+    }
+
+    .col {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-width: 160px;
+    }
+    .col-label {
+      font-size: 11px;
+      color: var(--color-text-subtle);
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    /* ── Checkbox ──────────────────────────────────── */
+    .cb-wrap {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      cursor: pointer;
+    }
+
+    .cb-box {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      border-radius: var(--radius-sm);
+      border: 2px solid var(--color-border-default);
+      background: var(--color-surface-default);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.15s, background 0.15s;
+      margin-top: 1px;
+    }
+
+    .cb-box svg { display: none; }
+
+    .cb-label-group {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .cb-label {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--color-text-heading);
+      line-height: 1.3;
+    }
+    .cb-helper {
+      font-size: 12px;
+      color: var(--color-text-subtle);
+      line-height: 1.4;
+    }
+
+    /* --- States --- */
+
+    /* Default unchecked → as above */
+
+    /* Default checked */
+    .cb-wrap.checked .cb-box {
+      background: var(--color-action);
+      border-color: var(--color-action);
+    }
+    .cb-wrap.checked .cb-box svg { display: block; }
+
+    /* Hover unchecked */
+    .cb-wrap.hover .cb-box {
+      border-color: var(--color-border-hover);
+      background: var(--amber-100);
+    }
+
+    /* Hover checked */
+    .cb-wrap.hover.checked .cb-box {
+      background: var(--color-action-hover);
+      border-color: var(--color-action-hover);
+    }
+    .cb-wrap.hover.checked .cb-box svg { display: block; }
+
+    /* Active (pressed) unchecked */
+    .cb-wrap.active .cb-box {
+      border-color: var(--amber-700);
+      background: var(--amber-300);
+    }
+
+    /* Active checked */
+    .cb-wrap.active.checked .cb-box {
+      background: var(--color-action-active);
+      border-color: var(--color-action-active);
+    }
+    .cb-wrap.active.checked .cb-box svg { display: block; }
+
+    /* Disabled unchecked */
+    .cb-wrap.disabled {
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+    .cb-wrap.disabled .cb-box {
+      border-color: var(--color-border-disabled);
+      background: var(--color-surface-disabled);
+    }
+    .cb-wrap.disabled .cb-label { color: var(--color-text-disabled); }
+    .cb-wrap.disabled .cb-helper { color: var(--color-text-disabled); }
+
+    /* Disabled checked */
+    .cb-wrap.disabled.checked .cb-box {
+      background: var(--grey-300);
+      border-color: var(--grey-300);
+    }
+    .cb-wrap.disabled.checked .cb-box svg { display: block; }
+
+    /* Indeterminate */
+    .cb-wrap.indeterminate .cb-box {
+      background: var(--color-action);
+      border-color: var(--color-action);
+    }
+    .cb-wrap.indeterminate .cb-box .icon-check { display: none; }
+    .cb-wrap.indeterminate .cb-box .icon-minus { display: block; }
+
+    /* Indeterminate disabled */
+    .cb-wrap.indeterminate.disabled .cb-box {
+      background: var(--grey-300);
+      border-color: var(--grey-300);
+    }
+  </style>
+</head>
+<body>
+
+  <p class="page-title">Checkbox</p>
+  <p class="page-subtitle">BuildParty Design System — Atom</p>
+
+  <!-- ── STATES (Unchecked) ──────────────────────────── -->
+  <div class="section">
+    <p class="section-title">States — Unchecked</p>
+    <div class="row">
+
+      <div class="col">
+        <span class="col-label">Default</span>
+        <div class="cb-wrap">
+          <div class="cb-box">
+            <svg class="icon-check" width="11" height="9" viewBox="0 0 11 9" fill="none">
+              <path d="M1 4.5L4 7.5L10 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="cb-label-group">
+            <span class="cb-label">Agree to terms</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <span class="col-label">Hover</span>
+        <div class="cb-wrap hover">
+          <div class="cb-box">
+            <svg class="icon-check" width="11" height="9" viewBox="0 0 11 9" fill="none">
+              <path d="M1 4.5L4 7.5L10 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="cb-label-group">
+            <span class="cb-label">Agree to terms</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <span class="col-label">Active (Pressed)</span>
+        <div class="cb-wrap active">
+          <div class="cb-box">
+            <svg class="icon-check" width="11" height="9" viewBox="0 0 11 9" fill="none">
+              <path d="M1 4.5L4 7.5L10 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="cb-label-group">
+            <span class="cb-label">Agree to terms</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <span class="col-label">Disabled</span>
+        <div class="cb-wrap disabled">
+          <div class="cb-box">
+            <svg class="icon-check" width="11" height="9" viewBox="0 0 11 9" fill="none">
+              <path d="M1 4.5L4 7.5L10 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="cb-label-group">
+            <span class="cb-label">Agree to terms</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── STATES (Checked) ───────────────────────────── -->
+  <div class="section">
+    <p class="section-title">States — Checked</p>
+    <div class="row">
+
+      <div class="col">
+        <span class="col-label">Default</span>
+        <div class="cb-wrap checked">
+          <div class="cb-box">
+            <svg class="icon-check" width="11" height="9" viewBox="0 0 11 9" fill="none">
+              <path d="M1 4.5L4 7.5L10 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="cb-label-group">
+            <span class="cb-label">Agree to terms</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <span class="col-label">Hover</span>
+        <div class="cb-wrap checked hover">
+          <div class="cb-box">
+            <svg class="icon-check" width="11" height="9" viewBox="0 0 11 9" fill="none">
+              <path d="M1 4.5L4 7.5L10 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="cb-label-group">
+            <span class="cb-label">Agree to terms</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <span class="col-label">Active (Pressed)</span>
+        <div class="cb-wrap checked active">
+          <div class="cb-box">
+            <svg class="icon-check" width="11" height="9" viewBox="0 0 11 9" fill="none">
+              <path d="M1 4.5L4 7.5L10 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="cb-label-group">
+            <span class="cb-label">Agree to terms</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <span class="col-label">Disabled</span>
+        <div class="cb-wrap checked disabled">
+          <div class="cb-box">
+            <svg class="icon-check" width="11" height="9" viewBox="0 0 11 9" fill="none">
+              <path d="M1 4.5L4 7.5L10 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="cb-label-group">
+            <span class="cb-label">Agree to terms</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── INDETERMINATE STATE ────────────────────────── -->
+  <div class="section">
+    <p class="section-title">Indeterminate</p>
+    <div class="row">
+
+      <div class="col">
+        <span class="col-label">Default</span>
+        <div class="cb-wrap indeterminate">
+          <div class="cb-box">
+            <svg class="icon-check" width="11" height="9" viewBox="0 0 11 9" fill="none">
+              <path d="M1 4.5L4 7.5L10 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <svg class="icon-minus" width="10" height="2" viewBox="0 0 10 2" fill="none">
+              <path d="M1 1H9" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="cb-label-group">
+            <span class="cb-label">Select all</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <span class="col-label">Hover</span>
+        <div class="cb-wrap indeterminate hover">
+          <div class="cb-box">
+            <svg class="icon-minus" width="10" height="2" viewBox="0 0 10 2" fill="none">
+              <path d="M1 1H9" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="cb-label-group">
+            <span class="cb-label">Select all</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <span class="col-label">Disabled</span>
+        <div class="cb-wrap indeterminate disabled">
+          <div class="cb-box">
+            <svg class="icon-minus" width="10" height="2" viewBox="0 0 10 2" fill="none">
+              <path d="M1 1H9" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="cb-label-group">
+            <span class="cb-label">Select all</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── WITH HELPER TEXT ───────────────────────────── -->
+  <div class="section">
+    <p class="section-title">With Helper Text</p>
+    <div class="row">
+
+      <div class="col" style="min-width:220px">
+        <span class="col-label">Unchecked + helper</span>
+        <div class="cb-wrap">
+          <div class="cb-box">
+            <svg class="icon-check" width="11" height="9" viewBox="0 0 11 9" fill="none">
+              <path d="M1 4.5L4 7.5L10 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="cb-label-group">
+            <span class="cb-label">Enable notifications</span>
+            <span class="cb-helper">Get updates about your sessions.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col" style="min-width:220px">
+        <span class="col-label">Checked + helper</span>
+        <div class="cb-wrap checked">
+          <div class="cb-box">
+            <svg class="icon-check" width="11" height="9" viewBox="0 0 11 9" fill="none">
+              <path d="M1 4.5L4 7.5L10 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="cb-label-group">
+            <span class="cb-label">Enable notifications</span>
+            <span class="cb-helper">Get updates about your sessions.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col" style="min-width:220px">
+        <span class="col-label">Disabled + helper</span>
+        <div class="cb-wrap disabled">
+          <div class="cb-box">
+            <svg class="icon-check" width="11" height="9" viewBox="0 0 11 9" fill="none">
+              <path d="M1 4.5L4 7.5L10 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="cb-label-group">
+            <span class="cb-label">Enable notifications</span>
+            <span class="cb-helper">Managed by your organization.</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── CHECKBOX GROUP ─────────────────────────────── -->
+  <div class="section">
+    <p class="section-title">Checkbox Group</p>
+    <div class="row">
+
+      <div class="col" style="min-width:220px; gap:12px">
+        <span class="col-label">Session type</span>
+
+        <div class="cb-wrap indeterminate">
+          <div class="cb-box">
+            <svg class="icon-minus" width="10" height="2" viewBox="0 0 10 2" fill="none">
+              <path d="M1 1H9" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="cb-label-group">
+            <span class="cb-label" style="font-weight:600">Select all</span>
+          </div>
+        </div>
+
+        <div style="margin-left:28px; display:flex; flex-direction:column; gap:10px; border-left:2px solid var(--grey-200); padding-left:16px;">
+          <div class="cb-wrap checked">
+            <div class="cb-box">
+              <svg class="icon-check" width="11" height="9" viewBox="0 0 11 9" fill="none">
+                <path d="M1 4.5L4 7.5L10 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <span class="cb-label">Launch Day</span>
+          </div>
+          <div class="cb-wrap">
+            <div class="cb-box"></div>
+            <span class="cb-label">Demo Session</span>
+          </div>
+          <div class="cb-wrap checked">
+            <div class="cb-box">
+              <svg class="icon-check" width="11" height="9" viewBox="0 0 11 9" fill="none">
+                <path d="M1 4.5L4 7.5L10 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <span class="cb-label">Creator Class</span>
+          </div>
+          <div class="cb-wrap disabled">
+            <div class="cb-box"></div>
+            <span class="cb-label">Mainstage</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>
