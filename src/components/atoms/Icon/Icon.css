@@ -1,0 +1,16 @@
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--icon-color); /* #292524 — Icons/default */
+}
+
+/* ── Size variants ─────────────────────────── */
+/* Icons/icon-xl → lg → md → sm → xsm         */
+
+.icon--xl  { width: var(--icon-xl);  height: var(--icon-xl);  }
+.icon--lg  { width: var(--icon-lg);  height: var(--icon-lg);  }
+.icon--md  { width: var(--icon-md);  height: var(--icon-md);  }
+.icon--sm  { width: var(--icon-sm);  height: var(--icon-sm);  }
+.icon--xsm { width: var(--icon-xsm); height: var(--icon-xsm); }
