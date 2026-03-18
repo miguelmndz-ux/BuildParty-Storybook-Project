@@ -1,0 +1,23 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--badge-gap);
+  padding: var(--badge-padding-y) var(--badge-padding-x);
+  border-radius: var(--badge-radius);
+  border: var(--badge-border-width) solid;
+  font-size: var(--badge-font-size);
+  font-weight: 700;
+  line-height: var(--badge-line-height);
+  color: var(--badge-text);
+  white-space: nowrap;
+}
+
+.badge--primary {
+  background: var(--badge-primary-bg);
+  border-color: var(--badge-primary-border);
+}
+
+.badge--outline {
+  background: var(--badge-outline-bg);
+  border-color: var(--badge-outline-border);
+}
