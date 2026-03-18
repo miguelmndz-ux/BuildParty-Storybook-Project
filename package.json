@@ -10,7 +10,7 @@
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "chromatic": "npx chromatic --project-token=chpt_cbf634688d40d0d"
+    "chromatic": "npx chromatic"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.10",

@@ -1,7 +1,8 @@
 import React from 'react';
 import { expect } from 'storybook/test';
 import { User } from '../../../lib/icons';
-import { Icon, ICON_SIZE_PX } from './Icon';
+import { Icon } from './Icon';
+import { ICON_SIZE_PX } from './Icon.constants.js';
 
 /** @type {import('@storybook/react-vite').Meta<typeof Icon>} */
 const meta = {
